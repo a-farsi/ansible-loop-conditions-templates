@@ -58,6 +58,8 @@ webapp
 ├── ansible.cfg
 ├── templates
 │   └── index.html.j2
+├── group_vars
+│   └── hosts.yml
 └── deploy.yml
 ```
 
