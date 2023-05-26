@@ -22,7 +22,6 @@
 
     - name: Install Python-pip
       command: python2.7 /tmp/get-pip.py
-      changed_when: false
 
     - name: Install docker Python
       pip: name=docker-py
