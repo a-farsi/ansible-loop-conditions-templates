@@ -36,10 +36,10 @@ The playbook file will be as follows :
 
     – name: download pip script
       get_url:
-        url: https://bootstrap.pypa.io/pip/3.6/get-pip.py
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
         dest: /tmp/get-pip.py
     - name: Install Python-pip
-      command: python3.6 /tmp/get-pip.py
+      command: python2.7 /tmp/get-pip.py
     - name: Install docker Python
       pip: name=docker-py
   tasks:
@@ -66,7 +66,7 @@ webapp
 So, within our working directory we create a folder called 'templates' that will contain a template file in Jinja2 format called "index.html.j2", where its content is illustrated below: 
 
 ``` 
-“Welcome on the {{host_name}}”. 
+“Welcome on the {{ansible_hostname}}”. 
 ```
 
 Our goal is to change dynamically the variable "host_name" in function of the managed node on which the dockerized appache in executed.

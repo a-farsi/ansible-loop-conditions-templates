@@ -2,22 +2,42 @@
 - name: "Appache installation using docker"
   hosts: prod
   become: true
+  vars:
+    ansible_sudo_pass: admin
   pre_tasks:
-    - name: Install EPEL repo
-      package: name=epel-release state=present
+    - name: Install EPEL repo, wget and git
+      package:
+        name="{{ item }}"
+        state=present
       when: ansible_distribution == "CentOS"
-    – name: download pip script
+      loop:
+        - epel-release
+        - wget
+        - git
+
+    - name: download pip script
       get_url:
-        url: https://bootstrap.pypa.io/pip/3.6/get-pip.py
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
         dest: /tmp/get-pip.py
+
     - name: Install Python-pip
-      command: python3.6 /tmp/get-pip.py
+      command: python2.7 /tmp/get-pip.py
+      changed_when: false
+
     - name: Install docker Python
       pip: name=docker-py
+
   tasks:
+    - name: Copy website file template
+      template:
+        src: index.html.j2
+        dest: /home/admin/index.html
+
     - name: create appache container
       docker_container:
         name: webapp
         image: httpd
         ports:
           - "80:80"
+        volumes:
+          - /home/admin/index.html:/usr/local/apache2/htdocs/index.html
