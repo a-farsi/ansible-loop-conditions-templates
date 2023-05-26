@@ -137,3 +137,30 @@ The final playbook file looks like this :
       volumes:
           - /home/admin/index.html:/usr/local/apache2/htdocs/index.html
 ```
+
+When executing the following command : 
+```
+ansible-playbook -i hosts deploy.yml
+```
+
+This figure shows the output that ensures that all pretasks and tasks are well executed.
+
+<p align=center>
+<img src="figures/resultat_cmd.png.png" width=65%/>
+</p>
+<p align=center>output when executing the ansible-plaubook command</p>
+
+
+To check that our dockerize apache has been deployed correctely and that is running, we launch a web browser while specifying  the port 80 as defined in the playbook above. we tested on 2 managed nodes, and we see that the variable '_ansible_hostname_' is replaed by the righ host name.
+
+<p align=center>
+<img src="figures/resultat_node2.png" width=65%/>
+</p>
+<p align=center>The greeting message defines in the template that display the node1's hostname</p>
+
+
+<p align=center>
+<img src="figures/resultat_node3.png" width=65%/>
+</p>
+<p align=center>The greeting message defines in the template that display the node2's hostname</p>
+
