@@ -146,7 +146,7 @@ ansible-playbook -i hosts deploy.yml
 This figure shows the output that ensures that all pretasks and tasks are well executed.
 
 <p align=center>
-<img src="figures/resultat_cmd.png.png" width=65%/>
+<img src="figures/resultat_cmd.png" width=65%/>
 </p>
 <p align=center>output when executing the ansible-plaubook command</p>
 
